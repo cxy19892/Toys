@@ -1,0 +1,129 @@
+{
+  "protocolVersion": 1,
+  "peripheralInfo": {
+    "comInfo": 1,
+    "chipInfo": 1,
+    "mainVersion": 1,
+    "subVersion": 1
+  },
+  "module": [
+    {
+      "name": "VERIFY",
+      "location": {
+        "SSPhead": "VER",
+        "service": "FFF0",
+        "character": "FFFA"
+      },
+      "com": [
+        {
+          "name": "getVersion",
+          "comment": "获取外设固件版本信息",
+          "location": {
+            "SSPhead": "VER",
+            "service": "FFF0",
+            "character": "FFFA"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            }
+          ]
+        }
+      ],
+      "note": [
+        {
+          "name": "version",
+          "comment": "外设固件信息返回通知 com为公司信息 chipNum为芯片信息  main为主版本 sub为副版本 均用16进制2byte表示",
+          "location": {
+            "SSPhead": "VER",
+            "service": "FFF0",
+            "character": "FFFA"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "com",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            },
+            {
+              "key": "chipNum",
+              "val": 0,
+              "rang": {
+                "loc": 4,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            },
+            {
+              "key": "main",
+              "val": 0,
+              "rang": {
+                "loc": 6,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            },
+            {
+              "key": "sub",
+              "val": 0,
+              "rang": {
+                "loc": 8,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,508 @@
+{
+  "OTAUrl": "http://ota.buildwin.com.cn/singleModuel/",
+  "protocolVersion": 1,
+  "peripheralInfo": {
+    "comInfo": 1,
+    "chipInfo": 1,
+    "mainVersion": 1,
+    "subVersion": 1
+  },
+  "module": [
+    {
+      "name": "MULT",
+      "location": {
+        "SSPhead": "MUL",
+        "service": "FFF0",
+        "character": "FFF1"
+      },
+      "com": [
+        {
+          "comment": "同步外设信息，获取外设当前模式以及其他模式开闭状态",
+          "name": "getState",
+          "location": {
+            "SSPhead": "MUL",
+            "service": "FFF0",
+            "character": "FFF1"
+          },
+          "controller": "state",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            }
+          ]
+        }
+      ],
+      "note": [
+        {
+          "name": "state",
+          "comment": "当前外设状态，1为FM 2为AUX，3为Music,4为使用默认LED界面",
+          "location": {
+            "SSPhead": "MUS",
+            "service": "FFF0",
+            "character": "FFF1"
+          },
+          "controller": "state",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "switch",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 1,
+                "min": 0,
+                "max": 3
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LED",
+      "location": {
+        "SSPhead": "LED",
+        "service": "FFF0",
+        "character": "FFF3"
+      },
+      "com": [
+        {
+          "name": "colorLight",
+          "comment": "设置外设灯光RGBW",
+          "location": {
+            "SSPhead": "LED",
+            "service": "FFF0",
+            "character": "FFF3"
+          },
+          "controller": "circle",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "R",
+              "val": 0,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 255
+              }
+            },
+            {
+              "key": "G",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 1,
+                "min": 0,
+                "max": 255
+              }
+            },
+            {
+              "key": "B",
+              "val": 0,
+              "rang": {
+                "loc": 3,
+                "len": 1,
+                "min": 0,
+                "max": 255
+              }
+            },
+            {
+              "key": "W",
+              "val": 0,
+              "rang": {
+                "loc": 4,
+                "len": 1,
+                "min": 0,
+                "max": 255
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OTAHANDLE",
+      "location": {
+        "SSPhead": "OTA",
+        "service": "FFF0",
+        "character": "FFF8"
+      },
+      "com": [
+        {
+          "name": "start",
+          "comment": "第一次握手policy为更新方案 ",
+          "location": {
+            "SSPhead": "OTA",
+            "service": "FFF0",
+            "character": "FFF8"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "policy",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 1,
+                "min": 0,
+                "max": 3
+              }
+            }
+          ]
+        },
+        {
+          "name": "finish",
+          "comment": "第二次握手 CRC为文件CRC值 用于验证",
+          "location": {
+            "SSPhead": "OTA",
+            "service": "FFF0",
+            "character": "FFF8"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "CRC",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            }
+          ]
+        }
+      ],
+      "note": [
+        {
+          "name": "start",
+          "comment": "第一次握手回应 switch为握手回应 01为成功 00为失败",
+          "location": {
+            "SSPhead": "OTA",
+            "service": "FFF0",
+            "character": "FFF8"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "switch",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 1,
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        },
+        {
+          "name": "finish",
+          "comment": "第二次握手回应 switch为握手回应 01为成功 00为失败",
+          "location": {
+            "SSPhead": "OTA",
+            "service": "FFF0",
+            "character": "FFF8"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "switch",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 1,
+                "min": 0,
+                "max": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OTADATA",
+      "comment": "OTA数据传输模块 20byte纯数据传输",
+      "location": {
+        "SSPhead": "",
+        "service": "FFF0",
+        "character": "FFF9"
+      },
+      "com": [
+        {
+          "name": "sendData",
+          "location": {
+            "SSPhead": "",
+            "service": "FFF0",
+            "character": "FFF9"
+          },
+          "controller": "event",
+          "des": "data",
+          "content": [
+            {
+              "key": "data",
+              "val": 0,
+              "rang": {
+                "loc": 0,
+                "len": 20,
+                "min": 0,
+                "max": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "VERIFY",
+      "location": {
+        "SSPhead": "VER",
+        "service": "FFF0",
+        "character": "FFFA"
+      },
+      "com": [
+        {
+          "name": "getVersion",
+          "comment": "获取外设固件版本信息",
+          "location": {
+            "SSPhead": "VER",
+            "service": "FFF0",
+            "character": "FFFA"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 1,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            }
+          ]
+        }
+      ],
+      "note": [
+        {
+          "name": "version",
+          "comment": "外设固件信息返回通知 com为公司信息 chipNum为芯片信息  main为主版本 sub为副版本 均用16进制2byte表示",
+          "location": {
+            "SSPhead": "VER",
+            "service": "FFF0",
+            "character": "FFFA"
+          },
+          "controller": "event",
+          "des": "msg",
+          "content": [
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 0,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "ident",
+              "val": 2,
+              "rang": {
+                "loc": 1,
+                "len": 1,
+                "min": 0,
+                "max": 0
+              }
+            },
+            {
+              "key": "com",
+              "val": 0,
+              "rang": {
+                "loc": 2,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            },
+            {
+              "key": "chipNum",
+              "val": 0,
+              "rang": {
+                "loc": 4,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            },
+            {
+              "key": "main",
+              "val": 0,
+              "rang": {
+                "loc": 6,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            },
+            {
+              "key": "sub",
+              "val": 0,
+              "rang": {
+                "loc": 8,
+                "len": 2,
+                "min": 0,
+                "max": 65535
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

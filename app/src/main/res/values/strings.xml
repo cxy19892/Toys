@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Toys</string>
+
+    <string name="cancle">取消</string>
+    <string name="ensure">确认</string>
+    <string name="devlist">设备列表</string>
+    <string name="volume">音量</string>
+    <string name="intomusic">音乐模式</string>
+    <string name="intofm">FM模式</string>
+    <string name="intoaux">aux模式</string>
+</resources>
